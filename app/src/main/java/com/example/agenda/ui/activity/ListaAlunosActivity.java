@@ -6,23 +6,27 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.agenda.R;
 import com.example.agenda.dao.AlunoDAO;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class ListaAlunosActivity extends AppCompatActivity {
+
+    public static final String TITULO_APPBAR = "Lista de Alunos";
+    private final AlunoDAO dao = new AlunoDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
 
+        setTitle(TITULO_APPBAR);
+
+        configuraFabNovoAluno();
+    }
+
+    private void configuraFabNovoAluno() {
         FloatingActionButton botaoNovoAluno = findViewById(R.id.activity_lista_alunos_fab_novo_aluno);
         botaoNovoAluno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,9 +39,10 @@ public class ListaAlunosActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        configuraLista();
+    }
 
-        AlunoDAO dao = new AlunoDAO();
-        
+    private void configuraLista() {
         ListView listaAlunos = findViewById(R.id.activity_lista_alunos_listview);
         listaAlunos.setAdapter(new ArrayAdapter<>(
                 this,

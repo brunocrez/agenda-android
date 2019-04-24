@@ -9,11 +9,7 @@ public class AlunoDAO {
 
     private final static List<Aluno> listaAlunos = new ArrayList<>();
 
-    public void salva(Aluno aluno) {
-        listaAlunos.add(aluno);
-    }
+    public void salva(Aluno aluno) { listaAlunos.add(aluno); }
 
-    public List<Aluno> getListaAlunos() {
-        return new ArrayList<>(listaAlunos);
-    }
+    public List<Aluno> getListaAlunos() { return new ArrayList<>(listaAlunos); }
 }
